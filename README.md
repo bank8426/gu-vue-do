@@ -1,6 +1,7 @@
 # gu-vue-do
 
 > Todo list in vue.js for P'Bomb Super Tester
+https://bank8426.github.io/gu-vue-do
 
 ## Build Setup
 
