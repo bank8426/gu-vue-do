@@ -3,10 +3,20 @@
     <h1>{{ msg }}</h1>
     <h2>To do list</h2>
     <ul>
-      <li>
-        item 1 : xxxx 
+      <li v-if="doToList.length" v-for="(item, index) in doToList" :key="item.id">
+        <label>{{index+1}}.{{item.description}}</label>
+        <input type="checkbox" v-model="item.finish">
       </li>
     </ul>
+    <div>
+      <label>New item : </label>
+      <br>
+      <label>Description: </label>
+      <input type="text" v-model="inputToDoObject.description">
+      <label>Finish: </label>
+      <input type="checkbox" v-model="inputToDoObject.finish">
+      <button v-on:click="addItem(inputToDoObject)">Add</button>
+    </div>
   </div>
 </template>
 
@@ -15,7 +25,21 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Gu Vue Do'
+      msg: 'Gu Vue Do',
+      doToList: [],
+      inputToDoObject: {
+        description: '',
+        finish: false
+      }
+    }
+  },
+  methods: {
+    addItem: function (item) {
+      console.log(item.description + ' ' + item.finish)
+      console.log(this.doToList)
+      this.doToList.push({description: item.description, finish: item.finish})
+      item.description = ''
+      item.finish = false
     }
   }
 }
@@ -31,7 +55,6 @@ ul {
   padding: 0;
 }
 li {
-  display: inline-block;
   margin: 0 10px;
 }
 a {
